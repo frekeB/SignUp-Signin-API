@@ -6,7 +6,7 @@
     "main": "server.ts",
     "scripts": {
         "test": "test",
-        "dev": "nodemon ./src/server.ts",
+        "start": "nodemon ./src/server.ts",
         "build": "nodemon ./dist/server.js",
         "compile": "tsc -watch"
     },
