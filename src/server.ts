@@ -1,13 +1,29 @@
 import express from 'express';
 import http from 'http';
-import mongoose from 'mongoose';
+import mongoose, { trusted } from 'mongoose';
+import dotenv from 'dotenv';
+import cors from 'cors';
+dotenv.config();
 
-const router = express()
+// =========Route========//
+import { userRoute } from './routes/userRoute';
+// =======end of Route========//
 
-/** connect to Mongoose */
+// global middleware//
+const app = express();
+app.use(cors());
+app.use(express.json());
+// global middleware//
 
-mongoose.connect(config.mongo.url,{retryWrites: true, w: 'majority'})
-.then(() =>{console.log('connected')
+// =========useRoutes========//
+app.use('/user', userRoute);
+// ======= useRoutes========//
+
+const conn = mongoose.connect(process.env.MONGO_URL as string, {}, () => {
+    mongoose.set('strictQuery', false);
+    console.log('db up and running ');
 });
-.catch((error)=>{console.log(error);
+
+app.listen(process.env.SERVER_PORT, () => {
+    console.log('server listening ' + process.env.SERVER_PORT);
 });
