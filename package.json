@@ -6,7 +6,9 @@
     "main": "server.ts",
     "scripts": {
         "test": "test",
-        "dev": "nodemon ./src/server.ts"
+        "dev": "nodemon ./src/server.ts",
+        "build": "nodemon ./dist/server.js",
+        "compile": "tsc -watch"
     },
     "author": "Ndifreke",
     "license": "ISC",
