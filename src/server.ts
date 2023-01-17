@@ -3,11 +3,11 @@ import http from 'http';
 import mongoose, { trusted } from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-const port = process.env.PORT;
 dotenv.config();
 
 // =========Route========//
 import { userRoute } from './routes/userRoute';
+import { config } from './config/config';
 // =======end of Route========//
 
 // global middleware//
@@ -25,6 +25,6 @@ const conn = mongoose.connect(process.env.MONGO_URL as string, {}, () => {
     console.log('db up and running ');
 });
 
-app.listen(port, () => {
-    console.log('server listening ' + port);
+app.listen(config.server.port, () => {
+    console.log('server listening ' + config.server.port);
 });
